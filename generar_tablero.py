@@ -99,26 +99,26 @@ html = f"""<!doctype html>
 <div class="wrap">
 
   <h1>Radar Junior</h1>
-  <p class="bajada">QuÃ© le piden a alguien sin experiencia en los avisos remotos
+  <p class="bajada">Qué le piden a alguien sin experiencia en los avisos remotos
   abiertos a Argentina.</p>
-  <p class="fecha">{total} avisos Â· actualizado el {date.today().strftime('%d/%m/%Y')}</p>
+  <p class="fecha">{total} avisos · actualizado el {date.today().strftime('%d/%m/%Y')}</p>
 
-  <h2>QuÃ© habilidades aparecen</h2>
+  <h2>Qué habilidades aparecen</h2>
   <div class="tarjeta">{filas}
   </div>
 
-  <h2>Las empresas que mÃ¡s publican</h2>
+  <h2>Las empresas que más publican</h2>
   <div class="tarjeta">
     <ul>{items}
     </ul>
   </div>
 
   <div class="nota">
-    <b>Sobre estos nÃºmeros.</b> Se cuentan buscando la palabra rodeada de espacios
-    dentro de la descripciÃ³n. Buscarla suelta daba el triple: "AI" tambiÃ©n aparece
+    <b>Sobre estos números.</b> Se cuentan buscando la palabra rodeada de espacios
+    dentro de la descripción. Buscarla suelta daba el triple: "AI" también aparece
     dentro de <i>maintain</i> y <i>email</i>, y "Excel" dentro de <i>excellent</i>.
-    Aun asÃ­ la cuenta no es perfecta: se pierde la palabra cuando va seguida de coma
-    o arranca una oraciÃ³n. Los valores reales son algo mÃ¡s altos que estos.
+    Aun así la cuenta no es perfecta: se pierde la palabra cuando va seguida de coma
+    o arranca una oración. Los valores reales son algo más altos que estos.
   </div>
 
 </div>
@@ -129,4 +129,4 @@ html = f"""<!doctype html>
 with open("index.html", "w", encoding="utf-8") as archivo:
     archivo.write(html)
 
-print("Listo: generÃ© index.html con", total, "avisos")
+print("Listo: generé index.html con", total, "avisos")

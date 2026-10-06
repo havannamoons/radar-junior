@@ -47,4 +47,4 @@ for a in avisos:
 conexion.commit()
 conexion.close()
 
-print("Listo: guardÃ©", len(avisos), "avisos en avisos.db")
+print("Listo: guardé", len(avisos), "avisos en avisos.db")

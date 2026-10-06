@@ -1,0 +1,41 @@
+# Baja los avisos de nuevo y actualiza el tablero, solo, una vez por semana.
+# Los lunes a las 9 de la mañana de Argentina.
+name: actualizacion semanal
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"
+  workflow_dispatch:      # tambien lo podes correr a mano desde GitHub
+
+permissions:
+  contents: write         # hace falta para poder subir el tablero nuevo
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar lo que hace falta
+        run: pip install requests
+
+      - name: Bajar los avisos de hoy
+        run: python bajar_avisos.py
+
+      - name: Cargarlos en la base
+        run: python crear_base.py
+
+      - name: Generar el tablero
+        run: python generar_tablero.py
+
+      - name: Subir el tablero si cambio
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add index.html
+          git diff --staged --quiet || git commit -m "Weekly update: refresh the dashboard"
+          git push

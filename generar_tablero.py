@@ -1,6 +1,8 @@
 import sqlite3
 from datetime import date
 
+from analisis import menciona
+
 conexion = sqlite3.connect("avisos.db")
 cursor = conexion.cursor()
 
@@ -8,18 +10,20 @@ cursor.execute("SELECT COUNT(*) FROM avisos")
 total = cursor.fetchone()[0]
 
 
-def contar(patron):
-    cursor.execute(
-        "SELECT COUNT(*) FROM avisos WHERE descripcion LIKE ?", (patron,)
-    )
-    return cursor.fetchone()[0]
+# Traemos todas las descripciones una sola vez
+cursor.execute("SELECT descripcion FROM avisos")
+descripciones = [fila[0] for fila in cursor.fetchall()]
 
 
-# Las habilidades, bien contadas (rodeadas de espacios)
+def contar(palabra):
+    """Cuenta en cuantos avisos aparece esa habilidad como palabra entera."""
+    return sum(1 for d in descripciones if menciona(d, palabra))
+
+
 habilidades = ["English", "AI", "Excel", "SQL", "Python", "Git"]
 datos = []
 for h in habilidades:
-    cuantos = contar("% " + h + " %")
+    cuantos = contar(h)
     datos.append((h, cuantos, round(cuantos * 100 / total)))
 datos.sort(key=lambda x: -x[1])
 
@@ -114,11 +118,11 @@ html = f"""<!doctype html>
   </div>
 
   <div class="nota">
-    <b>Sobre estos números.</b> Se cuentan buscando la palabra rodeada de espacios
-    dentro de la descripción. Buscarla suelta daba el triple: "AI" también aparece
-    dentro de <i>maintain</i> y <i>email</i>, y "Excel" dentro de <i>excellent</i>.
-    Aun así la cuenta no es perfecta: se pierde la palabra cuando va seguida de coma
-    o arranca una oración. Los valores reales son algo más altos que estos.
+    <b>Sobre estos números.</b> Se cuenta la palabra entera dentro de la descripción.
+    Buscarla suelta daba el triple, porque "AI" también aparece dentro de
+    <i>maintain</i> y <i>email</i>, y "Excel" dentro de <i>excellent</i>. Pedir que
+    estuviera rodeada de espacios corregía eso pero perdía los casos con coma al lado.
+    La versión actual usa límites de palabra, y hay tests que lo comprueban.
   </div>
 
 </div>

@@ -1,2 +1,4 @@
 avisos.json
 avisos.db
+__pycache__/
+.pytest_cache/

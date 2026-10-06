@@ -54,33 +54,33 @@
   <div class="tarjeta">
       <div class="fila">
         <div class="nombre">English</div>
-        <div class="barra"><div class="relleno" style="width:29%"></div></div>
-        <div class="dato">29% <span>(155)</span></div>
+        <div class="barra"><div class="relleno" style="width:45%"></div></div>
+        <div class="dato">45% <span>(239)</span></div>
       </div>
       <div class="fila">
         <div class="nombre">AI</div>
-        <div class="barra"><div class="relleno" style="width:29%"></div></div>
-        <div class="dato">29% <span>(154)</span></div>
+        <div class="barra"><div class="relleno" style="width:37%"></div></div>
+        <div class="dato">37% <span>(196)</span></div>
       </div>
       <div class="fila">
         <div class="nombre">Excel</div>
-        <div class="barra"><div class="relleno" style="width:5%"></div></div>
-        <div class="dato">5% <span>(29)</span></div>
+        <div class="barra"><div class="relleno" style="width:11%"></div></div>
+        <div class="dato">11% <span>(60)</span></div>
       </div>
       <div class="fila">
         <div class="nombre">SQL</div>
-        <div class="barra"><div class="relleno" style="width:2%"></div></div>
-        <div class="dato">2% <span>(13)</span></div>
+        <div class="barra"><div class="relleno" style="width:4%"></div></div>
+        <div class="dato">4% <span>(22)</span></div>
       </div>
       <div class="fila">
         <div class="nombre">Python</div>
-        <div class="barra"><div class="relleno" style="width:2%"></div></div>
-        <div class="dato">2% <span>(9)</span></div>
+        <div class="barra"><div class="relleno" style="width:4%"></div></div>
+        <div class="dato">4% <span>(22)</span></div>
       </div>
       <div class="fila">
         <div class="nombre">Git</div>
-        <div class="barra"><div class="relleno" style="width:1%"></div></div>
-        <div class="dato">1% <span>(3)</span></div>
+        <div class="barra"><div class="relleno" style="width:2%"></div></div>
+        <div class="dato">2% <span>(12)</span></div>
       </div>
   </div>
 
@@ -99,11 +99,11 @@
   </div>
 
   <div class="nota">
-    <b>Sobre estos números.</b> Se cuentan buscando la palabra rodeada de espacios
-    dentro de la descripción. Buscarla suelta daba el triple: "AI" también aparece
-    dentro de <i>maintain</i> y <i>email</i>, y "Excel" dentro de <i>excellent</i>.
-    Aun así la cuenta no es perfecta: se pierde la palabra cuando va seguida de coma
-    o arranca una oración. Los valores reales son algo más altos que estos.
+    <b>Sobre estos números.</b> Se cuenta la palabra entera dentro de la descripción.
+    Buscarla suelta daba el triple, porque "AI" también aparece dentro de
+    <i>maintain</i> y <i>email</i>, y "Excel" dentro de <i>excellent</i>. Pedir que
+    estuviera rodeada de espacios corregía eso pero perdía los casos con coma al lado.
+    La versión actual usa límites de palabra, y hay tests que lo comprueban.
   </div>
 
 </div>

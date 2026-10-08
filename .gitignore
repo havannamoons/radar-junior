@@ -8,3 +8,5 @@ __pycache__/
 *.key
 habilidades_ia.json
 habilidades_ia_viejo.json
+
+.vercel

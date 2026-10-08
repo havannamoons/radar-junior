@@ -1,0 +1,9 @@
+# Lo que NUNCA sube al servidor
+.env
+*.key
+avisos.json
+avisos.db
+habilidades_ia.json
+habilidades_ia_viejo.json
+__pycache__/
+.pytest_cache/

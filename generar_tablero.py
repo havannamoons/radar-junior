@@ -1,4 +1,7 @@
+import json
+import os
 import sqlite3
+from collections import Counter
 from datetime import date
 
 from analisis import menciona
@@ -20,12 +23,51 @@ def contar(palabra):
     return sum(1 for d in descripciones if menciona(d, palabra))
 
 
+# Lo que leyó la IA, si ya se corrió leer_con_ia.py
+ia = []
+if os.path.exists("habilidades_ia.json"):
+    with open("habilidades_ia.json", encoding="utf-8") as archivo:
+        leidos = json.load(archivo)
+    cuenta = Counter()
+    for v in leidos.values():
+        for h in v["habilidades"]:
+            cuenta[h.strip().lower()] += 1
+    ia = [(h, c, round(c * 100 / len(leidos))) for h, c in cuenta.most_common(16)]
+    ia_total = len(leidos)
+    ia_distintas = len(cuenta)
+
 habilidades = ["English", "AI", "Excel", "SQL", "Python", "Git"]
 datos = []
 for h in habilidades:
     cuantos = contar(h)
     datos.append((h, cuantos, round(cuantos * 100 / total)))
 datos.sort(key=lambda x: -x[1])
+
+# Las filas del bloque de la IA
+filas_ia = ""
+for nombre, cuantos, porcentaje in ia:
+    filas_ia += f"""
+      <div class="fila">
+        <div class="nombre ancho">{nombre}</div>
+        <div class="barra"><div class="relleno ia" style="width:{porcentaje}%"></div></div>
+        <div class="dato">{porcentaje}% <span>({cuantos})</span></div>
+      </div>"""
+
+bloque_ia = "" if not ia else f"""
+  <h2>Qué piden de verdad, según una IA que leyó cada aviso</h2>
+  <div class="tarjeta">{filas_ia}
+  </div>
+  <div class="nota ia-nota">
+    <b>Por qué este bloque existe.</b> El de arriba cuenta seis palabras que elegí yo:
+    solo encuentra lo que ya sabía buscar. Acá una IA leyó los {ia_total} avisos enteros
+    y dijo qué pide cada uno, sin lista previa. Aparecieron <b>{ia_distintas} habilidades
+    distintas</b>, y varias que nunca se me habrían ocurrido.
+    <br><br>
+    Lo más pedido no es técnico: comunicación, organización y atención al detalle están
+    muy por encima de cualquier lenguaje de programación. Y el inglés da parecido con los
+    dos métodos, que es la mejor señal de que ese número se puede creer.
+  </div>
+"""
 
 # Las empresas que mas publican
 cursor.execute("""
@@ -85,6 +127,9 @@ html = f"""<!doctype html>
   .nombre {{ width:78px; font-weight:600; flex:none }}
   .barra {{ flex:1; height:11px; background:#0d1422; border-radius:999px; overflow:hidden }}
   .relleno {{ height:100%; background:var(--acento); border-radius:999px }}
+  .relleno.ia {{ background:#5fd3a3 }}
+  .nombre.ancho {{ width:150px; font-size:.93rem }}
+  .ia-nota {{ background:rgba(95,211,163,.1); border-left-color:#5fd3a3 }}
   .dato {{ width:92px; text-align:right; font-variant-numeric:tabular-nums; flex:none }}
   .dato span {{ color:var(--texto3); font-size:.85rem }}
   ul {{ list-style:none; padding:0; margin:0 }}
@@ -110,6 +155,8 @@ html = f"""<!doctype html>
   <h2>Qué habilidades aparecen</h2>
   <div class="tarjeta">{filas}
   </div>
+
+  {bloque_ia}
 
   <h2>Las empresas que más publican</h2>
   <div class="tarjeta">

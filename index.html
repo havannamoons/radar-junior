@@ -28,6 +28,9 @@
   .nombre { width:78px; font-weight:600; flex:none }
   .barra { flex:1; height:11px; background:#0d1422; border-radius:999px; overflow:hidden }
   .relleno { height:100%; background:var(--acento); border-radius:999px }
+  .relleno.ia { background:#5fd3a3 }
+  .nombre.ancho { width:150px; font-size:.93rem }
+  .ia-nota { background:rgba(95,211,163,.1); border-left-color:#5fd3a3 }
   .dato { width:92px; text-align:right; font-variant-numeric:tabular-nums; flex:none }
   .dato span { color:var(--texto3); font-size:.85rem }
   ul { list-style:none; padding:0; margin:0 }
@@ -48,7 +51,7 @@
   <h1>Radar Junior</h1>
   <p class="bajada">Qué le piden a alguien sin experiencia en los avisos remotos
   abiertos a Argentina.</p>
-  <p class="fecha">530 avisos · actualizado el 06/10/2026</p>
+  <p class="fecha">530 avisos · actualizado el 07/10/2026</p>
 
   <h2>Qué habilidades aparecen</h2>
   <div class="tarjeta">
@@ -83,6 +86,102 @@
         <div class="dato">2% <span>(12)</span></div>
       </div>
   </div>
+
+  
+  <h2>Qué piden de verdad, según una IA que leyó cada aviso</h2>
+  <div class="tarjeta">
+      <div class="fila">
+        <div class="nombre ancho">comunicación</div>
+        <div class="barra"><div class="relleno ia" style="width:55%"></div></div>
+        <div class="dato">55% <span>(275)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">inglés</div>
+        <div class="barra"><div class="relleno ia" style="width:32%"></div></div>
+        <div class="dato">32% <span>(158)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">organización</div>
+        <div class="barra"><div class="relleno ia" style="width:28%"></div></div>
+        <div class="dato">28% <span>(142)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">resolución de problemas</div>
+        <div class="barra"><div class="relleno ia" style="width:19%"></div></div>
+        <div class="dato">19% <span>(96)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">atención al detalle</div>
+        <div class="barra"><div class="relleno ia" style="width:19%"></div></div>
+        <div class="dato">19% <span>(93)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">atención al cliente</div>
+        <div class="barra"><div class="relleno ia" style="width:17%"></div></div>
+        <div class="dato">17% <span>(85)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">trabajo en equipo</div>
+        <div class="barra"><div class="relleno ia" style="width:16%"></div></div>
+        <div class="dato">16% <span>(78)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">ventas</div>
+        <div class="barra"><div class="relleno ia" style="width:15%"></div></div>
+        <div class="dato">15% <span>(74)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">análisis de datos</div>
+        <div class="barra"><div class="relleno ia" style="width:14%"></div></div>
+        <div class="dato">14% <span>(70)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">crm</div>
+        <div class="barra"><div class="relleno ia" style="width:13%"></div></div>
+        <div class="dato">13% <span>(67)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">trabajo remoto</div>
+        <div class="barra"><div class="relleno ia" style="width:12%"></div></div>
+        <div class="dato">12% <span>(61)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">gestión de proyectos</div>
+        <div class="barra"><div class="relleno ia" style="width:10%"></div></div>
+        <div class="dato">10% <span>(50)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">inteligencia artificial</div>
+        <div class="barra"><div class="relleno ia" style="width:10%"></div></div>
+        <div class="dato">10% <span>(49)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">redacción</div>
+        <div class="barra"><div class="relleno ia" style="width:9%"></div></div>
+        <div class="dato">9% <span>(46)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">prospección</div>
+        <div class="barra"><div class="relleno ia" style="width:9%"></div></div>
+        <div class="dato">9% <span>(46)</span></div>
+      </div>
+      <div class="fila">
+        <div class="nombre ancho">negociación</div>
+        <div class="barra"><div class="relleno ia" style="width:7%"></div></div>
+        <div class="dato">7% <span>(37)</span></div>
+      </div>
+  </div>
+  <div class="nota ia-nota">
+    <b>Por qué este bloque existe.</b> El de arriba cuenta seis palabras que elegí yo:
+    solo encuentra lo que ya sabía buscar. Acá una IA leyó los 501 avisos enteros
+    y dijo qué pide cada uno, sin lista previa. Aparecieron <b>1019 habilidades
+    distintas</b>, y varias que nunca se me habrían ocurrido.
+    <br><br>
+    Lo más pedido no es técnico: comunicación, organización y atención al detalle están
+    muy por encima de cualquier lenguaje de programación. Y el inglés da parecido con los
+    dos métodos, que es la mejor señal de que ese número se puede creer.
+  </div>
+
 
   <h2>Las empresas que más publican</h2>
   <div class="tarjeta">

@@ -2,3 +2,9 @@ avisos.json
 avisos.db
 __pycache__/
 .pytest_cache/
+
+# secretos: NUNCA suben
+.env
+*.key
+habilidades_ia.json
+habilidades_ia_viejo.json
